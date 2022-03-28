@@ -15,6 +15,7 @@ int main() {
     int disp_array[ROW_SIZE][COL_SIZE] = {0};
 
     string email;
+cout << "Please enter your email address: "<<endl;
 
     cin >> email;
 
