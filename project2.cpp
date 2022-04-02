@@ -18,6 +18,18 @@ int main() {
 cout << "Please enter your email address: "<<endl;
 
     cin >> email;
+ while ( row > 10 || column >10){
+      cout<< "Please enter row size: "<< endl;
+           cin>>row;
+
+      cout<< "Please enter Column size: "<<endl;
+
+          cin>>column;
+
+         if (row > 10 || column> 10)
+{cout<<"Row or column number was greater than 10. please input a new one."<endl;
+ }
+         }
 
     if (isWrongFormat(email)) {
         cout << "Email could not be verified." << endl;
