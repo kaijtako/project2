@@ -15,21 +15,21 @@ int main() {
     int disp_array[ROW_SIZE][COL_SIZE] = {0};
 
     string email;
-cout << "Please enter your email address: "<<endl;
+    cout << "Please enter your email address: " << endl;
 
     cin >> email;
- while ( row > 10 || column >10){
-      cout<< "Please enter row size: "<< endl;
-           cin>>row;
+    while (row > 10 || column > 10) {
+        cout<< "Please enter row size: "<< endl;
+        cin>>row;
 
-      cout<< "Please enter Column size: "<<endl;
+        cout << "Please enter Column size: "<<endl;
 
-          cin>>column;
+          cin >> column;
 
-         if (row > 10 || column> 10)
-{cout<<"Row or column number was greater than 10. please input a new one."<endl;
- }
-         }
+        if (row > 10 || column> 10) {
+            cout << "Row or column number was greater than 10. please input a new one." << endl;
+        }
+    }
 
     if (isWrongFormat(email)) {
         cout << "Email could not be verified." << endl;
