@@ -4,39 +4,70 @@
 
 
 #include <iostream>
+#include <time.h>
+#include <stdlib.h>
 using namespace std;
 
-bool isWrongFormat(string s);
+const int ROW_SIZE = 10, COL_SIZE = 10;
+
+bool isWrongFormat(string);
+//void initialize(int array[][10], int, int, int = -1);
+void display(int array[][COL_SIZE], int, int);
+void checkRepeat();
+
+void initialize(int array[ROW_SIZE][COL_SIZE], int rows, int cols, int option = -1) {
+    bool doRand = false;
+    if (option != -1) {
+        doRand = true;
+    }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            array[i][j] = doRand ? rand() % 20 + 1 : -1;
+        }
+    }
+}
 
 int main() {
 
-    const int ROW_SIZE = 10, COL_SIZE = 10;
-    int num_array[ROW_SIZE][COL_SIZE] = {0};
-    int disp_array[ROW_SIZE][COL_SIZE] = {0};
+    int num_array[ROW_SIZE][COL_SIZE];
+    int disp_array[ROW_SIZE][COL_SIZE];
+
+    int rows = 0, columns = 0;
+    int points = 10;
+
+    srand(time(NULL));
 
     string email;
-    cout << "Please enter your email address: " << endl;
 
-    cin >> email;
-    while (row > 10 || column > 10) {
-        cout<< "Please enter row size: "<< endl;
-        cin>>row;
+    do {
+        cout << "Please enter your email address: " << endl;
+        cin >> email;
 
-        cout << "Please enter Column size: "<<endl;
-
-          cin >> column;
-
-        if (row > 10 || column> 10) {
-            cout << "Row or column number was greater than 10. please input a new one." << endl;
+        if (isWrongFormat(email)) {
+            cout << "Email could not be verified." << endl;
+            email = "";
         }
-    }
 
-    if (isWrongFormat(email)) {
-        cout << "Email could not be verified." << endl;
-        return 0;
-    }
+    } while (email == "");
 
     cout << "Email has been verified!" << endl;
+
+    do {
+        cout << "Please enter row size: " << endl;
+        cin >> rows;
+
+        cout << "Please enter Column size: " << endl;
+        cin >> columns;
+
+        if (rows > ROW_SIZE || columns > COL_SIZE) {
+            cout << "Row and column numbers cannot exceed 10. Please try again." << endl;
+        }
+    } while (rows > ROW_SIZE || columns > COL_SIZE);
+
+    initialize(disp_array, rows, columns);
+    initialize(num_array, rows, columns, 1);
+
+    display(disp_array, rows, columns);
 
     return 0;
 }
@@ -86,4 +117,13 @@ bool isWrongFormat(string s) {
     }
 
     return false;
+}
+
+void display(int array[ROW_SIZE][COL_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << array[i][j] << ' ';
+        }
+        cout << endl;
+    }
 }
